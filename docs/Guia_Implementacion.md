@@ -37,33 +37,33 @@ Este documento describe la implementación de optimizaciones avanzadas para SOEM
 ### 1.2 Flujo de Ejecución
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                    Aplicación EtherCAT                       │
-└────────────────────┬────────────────────────────────────────┘
+┌─────────────────────────────────────────────┐
+│           Aplicación EtherCAT               │
+└─────────────────────────────────────────────┘
                      │
          ┌───────────▼───────────┐
          │  ecx_send_processdata │
          └───────────┬───────────┘
                      │
     ┌────────────────▼────────────────┐
-    │  ecx_getindex (LOCK-FREE)       │ ◄── Sin mutex, CAS atómico
+    │    ecx_getindex (LOCK-FREE)     │ ◄── Sin mutex, CAS atómico
     └────────────────┬────────────────┘
                      │
     ┌────────────────▼────────────────┐
-    │  Memory Pool Allocation         │ ◄── Pre-asignado, zero-copy ready
+    │      Memory Pool Allocation     │ ◄── Pre-asignado, zero-copy ready
     └────────────────┬────────────────┘
                      │
     ┌────────────────▼────────────────┐
-    │  ecx_outframe (BATCH)           │ ◄── Agrupa múltiples frames
+    │       ecx_outframe (BATCH)      │ ◄── Agrupa múltiples frames
     └────────────────┬────────────────┘
                      │
     ┌────────────────▼────────────────┐
     │  ecx_waitinframe (PPOLL+PAUSE)  │ ◄── Polling eficiente
     └────────────────┬────────────────┘
                      │
-         ┌───────────▼───────────┐
-         │ ecx_receive_processdata│
-         └───────────────────────┘
+        ┌────────────▼────────────┐
+        │ ecx_receive_processdata │
+        └─────────────────────────┘
 ```
 
 ---

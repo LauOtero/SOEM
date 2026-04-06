@@ -16,12 +16,12 @@ El ciclo de comunicación en SOEM sigue el siguiente flujo:
 ┌─────────────────────────────────────────────────────────────────┐
 │                    CICLO ETHERCAT TÍPICO                        │
 ├─────────────────────────────────────────────────────────────────┤
-│  1. ecx_getindex() → Adquirir índice de buffer (LOCK)          │
-│  2. ecx_setupdatagram() → Preparar datagrama                   │
-│  3. ecx_outframe() → Enviar frame (send())                     │
-│  4. ecx_waitinframe() → Esperar respuesta (poll/recv)          │
-│  5. ecx_inframe() → Procesar respuesta (LOCK)                  │
-│  6. ecx_setbufstat() → Liberar buffer                          │
+│  1. ecx_getindex() → Adquirir índice de buffer (LOCK)           │
+│  2. ecx_setupdatagram() → Preparar datagrama                    │
+│  3. ecx_outframe() → Enviar frame (send())                      │
+│  4. ecx_waitinframe() → Esperar respuesta (poll/recv)           │
+│  5. ecx_inframe() → Procesar respuesta (LOCK)                   │
+│  6. ecx_setbufstat() → Liberar buffer                           │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
