@@ -2,7 +2,7 @@
 # license. See the file LICENSE.md distributed with this software for
 # full license information.
 
-cmake_minimum_required(VERSION 3.28)
+cmake_minimum_required(VERSION 3.10)
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 project(SOEM VERSION 2.0.0 LANGUAGES C)
 
@@ -172,6 +172,8 @@ if(SOEM_BUILD_SAMPLES)
 
   if (${CMAKE_SYSTEM_NAME} STREQUAL Linux)
     add_subdirectory(samples/eoe_test)
+    # Añadir módulo optimizado solo para Linux
+    add_subdirectory(optimized)
   endif()
 
   find_package (Python3 QUIET)

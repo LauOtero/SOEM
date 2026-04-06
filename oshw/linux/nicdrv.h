@@ -98,6 +98,7 @@ void ecx_setbufstat(ecx_portt *port, uint8 idx, int bufstat);
 uint8 ecx_getindex(ecx_portt *port);
 int ecx_outframe(ecx_portt *port, uint8 idx, int sock);
 int ecx_outframe_red(ecx_portt *port, uint8 idx);
+int ecx_inframe(ecx_portt *port, uint8 idx, int stacknumber);
 int ecx_waitinframe(ecx_portt *port, uint8 idx, int timeout);
 int ecx_srconfirm(ecx_portt *port, uint8 idx, int timeout);
 
